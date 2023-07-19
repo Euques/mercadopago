@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MercadoPago Checkout</title>
+</head>
+<body>
+
+<script src="https://www.mercadopago.com.br/integrations/v1/web/mercadopago.js"></script>
+
+<script>
+(function() {
+  // Initialize MercadoPago
+  MercadoPago.setPublicToken('YOUR_PUBLIC_TOKEN');
+
+  // Create a payment form
+  var paymentForm = new MercadoPago.Payment({
+    amount: 100,
+    currencyId: 'BRL',
+    payer: {
+      email: 'johndoe@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      address: {
+        line1: '123 Main Street',
+        city: 'Anytown',
+        state: 'CA',
+        countryCode: 'US',
+        postalCode: '91234'
+      }
+    }
+  });
+
+  // Add the payment form to the page
+  document.body.appendChild(paymentForm.getContainer());
+
+  // Listen for the payment form's success event
+  paymentForm.on('success', function(event) {
+    // Do something when the payment is successful
+  });
+
+  // Listen for the payment form's failure event
+  paymentForm.on('failure', function(event) {
+    // Do something when the payment is unsuccessful
+  });
+})();
+</script>
+
+</body>
+</html>
